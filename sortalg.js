@@ -5,7 +5,8 @@ function swap(array, valA, valB) {
   return array;
 }
 
-function partition(array, start, end) {
+// Middle Pivot
+/* function partition(array, start, end) {
   const pivotIndex = Math.floor((start + (end - 1))/2);
   const pivot = array[pivotIndex];
   let j = start;
@@ -17,7 +18,21 @@ function partition(array, start, end) {
   }
   // swap(array, pivotIndex, j);
   return pivotIndex;
-}
+} */
+
+// Lomuto's Algorithm
+function partition(array, start, end) {
+  const pivot = array[end - 1];
+  let j = start;
+  for (let i = start; i < end - 1; i++) {
+    if (array[i] <= pivot) {
+      swap(array, i, j);
+      j++;
+    }
+  }
+  swap(array, end-1, j);
+  return j;
+};
 
 function quickSort(array, start = 0, end = array.length) {
   if (start >= end) {
