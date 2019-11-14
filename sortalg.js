@@ -316,7 +316,7 @@ function bucketSort(array, max, min) {
     result[array[i] - min] = array[i]
   }
 
-  return result
+  return result.filter(item => item !== 'EMPTY BUCKET')
 }
 
 let arr = [3, 4, 2, 7, 1, 9]
