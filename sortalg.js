@@ -197,3 +197,6 @@ function mSort(array) {
 }
 
 console.log(mSort(smallUnsortedArray))
+
+// Exercise 5
+const LinkedList = require('./LinkedList')
