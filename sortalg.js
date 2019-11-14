@@ -304,3 +304,21 @@ function sortBooks(arr) {
 const wordArr = [ 'The brown quick fox jumped over the lazy dog', 'Hello world', 'Mary Poppinz', 'Star Wars'];
 
 console.log(sortBooks(wordArr));
+
+function bucketSort(array, max, min) {
+  let result = []
+
+  for (let i = 0; i < max; i++) {
+    result[i] = 'EMPTY BUCKET'
+  }
+
+  for (let i = 0; i < array.length; i++) {
+    result[array[i] - min] = array[i]
+  }
+
+  return result
+}
+
+let arr = [3, 4, 2, 7, 1, 9]
+
+console.log('what am i', bucketSort(arr, 9, 1))
