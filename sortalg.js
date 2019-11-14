@@ -3,6 +3,48 @@ function swap(array, valA, valB) {
   array[valA] = array[valB]
   array[valB] = temp
 }
+// Alex C's Solution
+// vvvvvvvvvvvvvvvvvvv
+// function partition(arr, left, right) {
+    
+//   let i = left, j = right;
+//   let tmp;
+//   let pivot = arr[ Math.floor((left+right) / 2) ]
+
+//   while( i<= j ) {
+//       while( arr[i] < pivot ) {
+//           i++;
+//       }
+//       while( arr[j] > pivot ) {
+//           j--;
+//       }
+//       if( i<= j ) {
+//           tmp = arr[i];
+//           arr[i] = arr[j];
+//           arr[j] = tmp;
+//           i++;
+//           j--;
+//       }
+//   }
+//   return i;
+// }
+
+// function qSort(arr, left, right) {
+//   left = left === undefined ? 0 : left;
+//   right = right === undefined ? arr.length : right;
+
+//   let index = partition(arr, left, right)
+
+//   if( left < index - 1) {
+//       qSort(arr, left, index - 1);
+//   }
+//   if( index < right ) {
+//       qSort(arr, index, right)
+//   }
+
+//   return arr;
+// }
+// ^^^^^^^^^^^^^^^^^^^^^^^^
 
 // Middle Pivot
 // function partition(array, start, end) {
@@ -200,3 +242,27 @@ console.log(mSort(smallUnsortedArray))
 
 // Exercise 5
 const LinkedList = require('./LinkedList')
+
+const mSortLL = new LinkedList()
+// 89 30 25 32 72 70 51 42 25 24
+mSortLL.insertFirst(89)
+mSortLL.insertLast(30)
+mSortLL.insertLast(25)
+mSortLL.insertLast(32)
+mSortLL.insertLast(72)
+mSortLL.insertLast(70)
+mSortLL.insertLast(51)
+mSortLL.insertLast(42)
+mSortLL.insertLast(25)
+mSortLL.insertLast(24)
+
+function mergeSortLL(LL) {
+  const llAsArr = []
+  while (LL.head) {
+    llAsArr.push(LL.head.value)
+    LL.remove(LL.head.value)
+  }
+  return mSort(llAsArr)
+}
+
+console.log(mergeSortLL(mSortLL))
