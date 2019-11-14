@@ -273,9 +273,6 @@ function bucketSort(arr, min, max) {
   if (arr.length <= 2) 
     return [min, max];
 
-  let leftBucket = bucketSort(arr, min, arr[Math.floor(arr.length / 2)]);
-  let rightBucket = bucketSort(arr, arr[Math.floor((arr.length / 2) + 1)], max);
-  
 }
 
 function shuffleArr(arr) {
@@ -286,4 +283,24 @@ function shuffleArr(arr) {
   return arr;
 }
 
+
 // console.log(shuffleArr(semiSortedArr));
+
+
+// This has a worse case complexity of O(n^2)
+function sortBooks(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (arr[i] < arr[j]) {
+        let temp = arr[i] ;
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+  return arr;
+}
+
+const wordArr = [ 'The brown quick fox jumped over the lazy dog', 'Hello world', 'Mary Poppinz', 'Star Wars'];
+
+console.log(sortBooks(wordArr));
