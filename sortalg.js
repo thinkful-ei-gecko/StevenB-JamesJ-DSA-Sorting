@@ -1,12 +1,12 @@
 function swap(array, valA, valB) {
-  let temp = array[valA]
-  array[valA] = array[valB]
-  array[valB] = temp
+  let temp = array[valA];
+  array[valA] = array[valB];
+  array[valB] = temp;
 }
 // Alex C's Solution
 // vvvvvvvvvvvvvvvvvvv
 // function partition(arr, left, right) {
-    
+
 //   let i = left, j = right;
 //   let tmp;
 //   let pivot = arr[ Math.floor((left+right) / 2) ]
@@ -71,19 +71,19 @@ function partition(array, start, end) {
       j++;
     }
   }
-  swap(array, end-1, j);
+  swap(array, end - 1, j);
   return j;
-};
+}
 
 function quickSort(array, start = 0, end = array.length) {
   if (start >= end) {
-    return array
+    return array;
   }
 
-  const middle = partition(array, start, end)
-  array = quickSort(array, start, middle)
-  array = quickSort(array, middle + 1, end)
-  return array
+  const middle = partition(array, start, end);
+  array = quickSort(array, start, middle);
+  array = quickSort(array, middle + 1, end);
+  return array;
 }
 
 const unsortedArray = [
@@ -187,82 +187,103 @@ const unsortedArray = [
   40,
   14,
   5,
-]
-const smallUnsortedArray = [89, 30, 25, 32, 72, 70]
+];
+const smallUnsortedArray = [89, 30, 25, 32, 72, 70];
 
-console.log(quickSort(unsortedArray))
+console.log(quickSort(unsortedArray));
 
 // [2,3,1,4]
 function merge(array, leftArr, rightArr) {
-  let i = 0
-  let j = 0
-  let outputIdx = 0
+  let i = 0;
+  let j = 0;
+  let outputIdx = 0;
   while (i < leftArr.length && j < rightArr.length) {
     if (leftArr[i] < rightArr[j]) {
-      array[outputIdx] = leftArr[i]
-      i++
-      outputIdx++
+      array[outputIdx] = leftArr[i];
+      i++;
+      outputIdx++;
     } else {
-      array[outputIdx] = rightArr[j]
-      j++
-      outputIdx++
+      array[outputIdx] = rightArr[j];
+      j++;
+      outputIdx++;
     }
   }
 
   while (i < leftArr.length) {
-    array[outputIdx] = leftArr[i]
-    i++
-    outputIdx++
+    array[outputIdx] = leftArr[i];
+    i++;
+    outputIdx++;
   }
 
   while (j < rightArr.length) {
-    array[outputIdx] = rightArr[j]
-    j++
-    outputIdx++
+    array[outputIdx] = rightArr[j];
+    j++;
+    outputIdx++;
   }
 
-  return array
+  return array;
 }
 
 function mSort(array) {
   if (array.length <= 1) {
-    return array
+    return array;
   }
-  let middle = Math.floor((array.length) / 2)
-  let leftArr = array.slice(0, middle)
-  let rightArr = array.slice(middle, array.length)
+  let middle = Math.floor((array.length) / 2);
+  let leftArr = array.slice(0, middle);
+  let rightArr = array.slice(middle, array.length);
 
-  let left = mSort(leftArr)
-  let right = mSort(rightArr)
+  let left = mSort(leftArr);
+  let right = mSort(rightArr);
 
-  return merge(array, left, right)
+  return merge(array, left, right);
 }
 
-console.log(mSort(smallUnsortedArray))
+console.log(mSort(smallUnsortedArray));
 
 // Exercise 5
-const LinkedList = require('./LinkedList')
+const LinkedList = require('./LinkedList');
 
-const mSortLL = new LinkedList()
+const mSortLL = new LinkedList();
 // 89 30 25 32 72 70 51 42 25 24
-mSortLL.insertFirst(89)
-mSortLL.insertLast(30)
-mSortLL.insertLast(25)
-mSortLL.insertLast(32)
-mSortLL.insertLast(72)
-mSortLL.insertLast(70)
-mSortLL.insertLast(51)
-mSortLL.insertLast(42)
-mSortLL.insertLast(25)
-mSortLL.insertLast(24)
+mSortLL.insertFirst(89);
+mSortLL.insertLast(30);
+mSortLL.insertLast(25);
+mSortLL.insertLast(32);
+mSortLL.insertLast(72);
+mSortLL.insertLast(70);
+mSortLL.insertLast(51);
+mSortLL.insertLast(42);
+mSortLL.insertLast(25);
+mSortLL.insertLast(24);
 
 function mergeSortLL(LL) {
-  const llAsArr = []
+  const llAsArr = [];
   while (LL.head) {
-    llAsArr.push(LL.head.value)
-    LL.remove(LL.head.value)
+    llAsArr.push(LL.head.value);
+    LL.remove(LL.head.value);
   }
-  return mSort(llAsArr)
+  return mSort(llAsArr);
 }
 
-console.log(mergeSortLL(mSortLL))
+console.log(mergeSortLL(mSortLL));
+
+const semiSortedArr = [1, 5, 2, 4, 6, 20];
+
+function bucketSort(arr, min, max) {
+  if (arr.length <= 2) 
+    return [min, max];
+
+  let leftBucket = bucketSort(arr, min, arr[Math.floor(arr.length / 2)]);
+  let rightBucket = bucketSort(arr, arr[Math.floor((arr.length / 2) + 1)], max);
+  
+}
+
+function shuffleArr(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let randomIdx = Math.floor(Math.random() * arr.length);
+    swap(arr, i, randomIdx);
+  }
+  return arr;
+}
+
+// console.log(shuffleArr(semiSortedArr));
